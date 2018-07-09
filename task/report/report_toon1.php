@@ -5930,11 +5930,15 @@ $c++;
   <?
   echo $rec["groupname"] . "   ตำแหน่ง  " . $rec["managepositiontype"] ;
    echo  "   (". $rec["datestart"] .  " - " ;
-   if($rec["datestop"]=="") 
+   if($rec["dateend"]=="1900-01-01") 
   {
    echo " ปัจจุบัน )";
+   $mm = $month;
   }else{
-   echo $rec["datestop"]. " ) ";
+  echo $rec["dateend"]. " ) ";
+  $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
+  $mm = floor(($date_diff)/2628000);
+  $mm = $mm+1;
  }
  ?>
   
@@ -5946,8 +5950,8 @@ $c++;
   <p class=MsoNoSpacing align=center style='text-align:center'><span   style='font-size:14.0pt;font-family:"Browallia New","sans-serif";'>  
   <?
   if($rec["sumhour"]!=0){
-  echo  number_format($rec["sumhour"]*$month,1);
-  $t321_212 += $rec["sumhour"]*$month;
+  echo  number_format($rec["sumhour"]*$mm,1);
+  $t321_212 += $rec["sumhour"]*$mm;
   }else echo "-";
   ?>
   
@@ -8766,11 +8770,15 @@ $c++;
   <?
   echo $rec["groupname"] . "   ตำแหน่ง  " . $rec["managepositiontype"] ;
    echo  "   (". $rec["datestart"] .  " - " ;
-   if($rec["datestop"]=="") 
+   if($rec["dateend"]=="1900-01-01") 
   {
    echo " ปัจจุบัน )";
+   $mm = $month;
   }else{
-   $rec["datestop"]. " ) ";
+  echo $rec["dateend"]. " ) ";
+  $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
+  $mm = floor(($date_diff)/2628000);
+  $mm = $mm+1;
  }
    ?>
   </span><span
@@ -8785,8 +8793,8 @@ $c++;
   //echo "month" . $month;
   if($rec["sumhour"]!=0){
   //*$month;
-  echo   number_format($rec["sumhour"]*$month,1);
-  $t621 += $rec["sumhour"]*$month;
+  echo   number_format($rec["sumhour"]*$mm,1);
+  $t621 += $rec["sumhour"]*$mm;
   }else echo "-";
   ?>
   
@@ -8843,7 +8851,7 @@ INNER JOIN hrmedicine_db.dbo.tbmanagedetail AS d ON p.id = d.manageid
 WHERE (d.dateend >= '$date_start_db' OR  d.dateend = '1900-01-01') AND (d.id = '$emp_id')  AND (p.managelevel = '2')  order by d.datestart asc ";
 
 //echo  "<br><br>".$sql;
- $arr = $objdb->getArray($sql);
+$arr = $objdb->getArray($sql);
 //echo "count===".count($arr);
 $c=0;
 if(count($arr)>0){
@@ -8865,11 +8873,15 @@ $c++;
    <?
   echo $rec["groupname"] . "   ตำแหน่ง  " . $rec["managepositiontype"] ;
    echo  "   (". $rec["datestart"] .  " - " ;
-   if($rec["datestop"]=="") 
+   if($rec["dateend"]=="1900-01-01") 
   {
    echo " ปัจจุบัน )";
+   $mm = $month;
   }else{
-  echo $rec["datestop"]. " ) ";
+  echo $rec["dateend"]. " ) ";
+  $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
+  $mm = floor(($date_diff)/2628000);
+  $mm = $mm+1;
  }
    ?>
   </span><span
@@ -8882,8 +8894,8 @@ $c++;
   style='font-size:14.0pt;font-family:"Browallia New","sans-serif"'>
     <?
   if($rec["sumhour"]!=0){
-  echo   number_format($rec["sumhour"]*$month,1);
-  $t622 += $rec["sumhour"]*$month;
+  echo   number_format($rec["sumhour"]*$mm,1);
+  $t622 += $rec["sumhour"]*$mm;
   }else echo "-";
   ?>
   </span></p>  </td>
@@ -9670,11 +9682,15 @@ $c++;
   <?
   echo $rec["groupname"] . "   ตำแหน่ง  " . $rec["managepositiontype"] ;
    echo  "   (". $rec["datestart"] .  " - " ;
-   if($rec["datestop"]=="") 
+  if($rec["dateend"]=="1900-01-01") 
   {
    echo " ปัจจุบัน )";
+   $mm = $month;
   }else{
-   echo $rec["datestop"]. " ) ";
+  echo $rec["dateend"]. " ) ";
+  $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
+  $mm = floor(($date_diff)/2628000);
+  $mm = $mm+1;
  }
  ?>
   
@@ -9687,8 +9703,8 @@ $c++;
 
   if($rec["sumhour"]!=0){
 
-  echo   number_format($rec["sumhour"]*$month,1);
-  $t734 += $rec["sumhour"]*$month;
+  echo   number_format($rec["sumhour"]*$mm,1);
+  $t734 += $rec["sumhour"]*$mm;
   }else echo "-";
   ?>
   </span></span></p>  </td>
@@ -9889,11 +9905,15 @@ $c++;
   <?
   echo $rec["groupname"] . "   ตำแหน่ง  " . $rec["managepositiontype"] ;
    echo  "   (". $rec["datestart"] .  " - " ;
-   if($rec["datestop"]=="") 
+  if($rec["dateend"]=="1900-01-01") 
   {
    echo " ปัจจุบัน )";
+   $mm = $month;
   }else{
-   echo $rec["datestop"]. " ) ";
+  echo $rec["dateend"]. " ) ";
+  $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
+  $mm = floor(($date_diff)/2628000);
+  $mm = $mm+1;
  }
  ?>
   
@@ -9906,8 +9926,8 @@ $c++;
 
   if($rec["sumhour"]!=0){
 
-  echo   number_format($rec["sumhour"]*$month,1);
-  $t746 += $rec["sumhour"]*$month;
+  echo   number_format($rec["sumhour"]*$mm,1);
+  $t746 += $rec["sumhour"]*$mm;
   }else echo "-";
   ?>
   </span></span></p>  </td>
@@ -11043,11 +11063,15 @@ $c++;
   <?
   echo $rec["groupname"] . "   ตำแหน่ง  " . $rec["managepositiontype"] ;
    echo  "   (". $rec["datestart"] .  " - " ;
-   if($rec["datestop"]=="") 
+  if($rec["dateend"]=="1900-01-01") 
   {
    echo " ปัจจุบัน )";
+   $mm = $month;
   }else{
-   echo $rec["datestop"]. " ) ";
+  echo $rec["dateend"]. " ) ";
+  $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
+  $mm = floor(($date_diff)/2628000);
+  $mm = $mm+1;
  }
  ?>
   
@@ -11061,8 +11085,8 @@ $c++;
   <?
   //echo "month ".$month;
   if($rec["sumhour"]!=0){
-  echo   number_format($rec["sumhour"]*$month,1);
-  $t82 += $rec["sumhour"]*$month;
+  echo   number_format($rec["sumhour"]*$mm,1);
+  $t82 += $rec["sumhour"]*$mm;
   }else echo "-";
   ?>
   
