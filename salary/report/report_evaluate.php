@@ -1,9 +1,9 @@
 <?php
 session_start();
-if($_GET["chk"]=="excel"){
+/*if($_GET["chk"]=="excel"){
 	header("Content-type: application/vnd.ms-excel");
 	header("Content-Disposition: attachment; filename=report_evaluate.xls");
-}
+}*/
 require("../database.mssql.class/msdatabase.class.php");
 require("../database.mssql.class/config.inc.php");
 require("../function/function.php");  
@@ -94,13 +94,13 @@ $aes = new AES($_SESSION["encryp"]);
 		{
 			if ($datetoday > $dateround2 AND $datetoday < $dateround1)
 			{
-				$dateround = "1 เมษายน ".($yy+543);
-				$datesalary = "1 ต.ค. ".(($yy+543)-1);
+				$dateround = "1 ตุลาคม ".($yy+543);
+				$datesalary = "1 เม.ย. ".(($yy+543)-1);
 			}
 			else
 			{
-				$dateround = "1 ตุลาคม ".($yy+543);
-				$datesalary = "1 เม.ษ. ".(($yy+543));
+				$dateround = "1 เมษายน ".($yy+543);
+				$datesalary = "1 ต.ค. ".(($yy+543));
 			}
 		}
 		else
@@ -109,9 +109,10 @@ $aes = new AES($_SESSION["encryp"]);
 			$datesalary = "1 ก.ค. ".(($yy+543)-1);
 		}
 
-		$sql = "SELECT DISTINCT e.empid,emptitle,CAST(empname AS varchar(100)) AS empname
+		$sql = "SELECT DISTINCT e.empid,emptitle,emprankname,CAST(empname AS varchar(100)) AS empname
 			,CAST(empsname AS varchar(100)) AS empsname,CAST(typename AS varchar(100)) AS typename
-			,CAST(positionname AS varchar(100)) AS positionname,CAST(unitname AS varchar(500)) AS unitname 
+			,CAST(positionname AS varchar(100)) AS positionname,CAST(unitname AS varchar(500)) AS unitname
+			,CAST(spositionname AS VARCHAR(100)) AS spositionname 
 			FROM tborder AS o
 			LEFT JOIN $hrmed.tbemployee AS e ON o.empid=e.empid Collate Thai_CI_AI
 			LEFT JOIN $hrmed.tbempwork AS w ON e.id=w.id 
@@ -207,17 +208,37 @@ $aes = new AES($_SESSION["encryp"]);
 								$i = 1;
 								foreach ($arr AS $rec)
 								{
-									switch ($rec["emptitle"])
+									//echo "rankname : ".$rec["emprankname"];
+									if ($rec["emprankname"] == "" OR $rec["emprankname"] == " ")
 									{
-										case 1:
-											$rank = "นาย";
-											break;
-										case 2:
-											$rank = "นางสาว";
-											break;
-										case 3:
-											$rank = "นาง";
-											break;
+										switch ($rec["emptitle"])
+										{
+											case 1:
+												$rank = "นาย";
+												break;
+											case 2:
+												$rank = "นางสาว";
+												break;
+											case 3:
+												$rank = "นาง";
+												break;
+										}
+									}
+									else
+									{
+										switch ($rec["emptitle"])
+										{
+											case 1:
+												$rank = "นพ.";
+												break;
+											case 2:
+												$rank = "พญ.";
+												break;
+											case 3:
+												$rank = "พญ.";
+												break;
+										}
+										$rank = $rec["spositionname"].$rank;
 									}
 
 									$sql_eva = "SELECT TOP 1 * FROM tbevaluate WHERE empid = $rec[empid] ORDER BY id DESC ";
@@ -261,7 +282,7 @@ $aes = new AES($_SESSION["encryp"]);
 									<tr>
 										<td style="text-align:center;"><?=$i?></td>
 										<td><?=$rank.$rec["empname"]. " ".$rec["empsname"]?></td>
-										<td><?=$rec["typename"]?></td>
+										<td><?=$rec["positionname"]?></td>
 										<td><?=$rec["unitname"]?></td>
 										<td style="text-align:center;"><?=$order?></td>
 										<?php
