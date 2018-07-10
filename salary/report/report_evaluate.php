@@ -1,9 +1,9 @@
 <?php
 session_start();
-/*if($_GET["chk"]=="excel"){
+if($_GET["chk"]=="excel"){
 	header("Content-type: application/vnd.ms-excel");
 	header("Content-Disposition: attachment; filename=report_evaluate.xls");
-}*/
+}
 require("../database.mssql.class/msdatabase.class.php");
 require("../database.mssql.class/config.inc.php");
 require("../function/function.php");  
@@ -305,18 +305,35 @@ $aes = new AES($_SESSION["encryp"]);
 												$evaluate2 = 0;
 											}
 										?>
-											<td><?=$evaluate1?></td>
-											<td><?=$evaluate2?></td>
+											<td style="text-align:center;"><?=$evaluate1?></td>
+											<td style="text-align:center;"><?=$evaluate2?></td>
 										<?php
 										}
 										else
 										{
+											$sql_eva = "SELECT TOP 1 * FROM tbevaluate WHERE empid = '$rec[empid]' ORDER BY id DESC ";
+											$eva = $objdb->query_first($sql_eva);
+											$row_eva = $objdb->numrows($sql_eva);
+											if ($row_eva > 0)
+											{
+												if ($eva["evaluate"] == "" AND $eva["evaluate"] == " ")
+												{
+													$evaluate = 0;
+												}
+												else
+												{
+													$evaluate = $aes->decrypt(asciitotext($eva["evaluate"]));
+												}
+											}
+											else
+											{
+												$evaluate = 0;
+											}
 										?>
-											<td></td>
+											<td style="text-align:center;"><?=$evaluate?></td>
 										<?php
 										}
 										?>
-										<td style="text-align:center;"><?=$evaluate?></td>
 										<td></td>
 										<td></td>
 										<td></td>
