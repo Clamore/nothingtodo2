@@ -95,7 +95,7 @@ $aes = new AES($_SESSION["encryp"]);
 			if ($datetoday > $dateround2 AND $datetoday < $dateround1)
 			{
 				$dateround = "1 ตุลาคม ".($yy+543);
-				$datesalary = "1 เม.ย. ".(($yy+543)-1);
+				$datesalary = "1 เม.ย. ".(($yy+543));
 			}
 			else
 			{
@@ -146,7 +146,7 @@ $aes = new AES($_SESSION["encryp"]);
 					<!-- Write HTML just like a web page -->
 					<!-- <article>This is an A4 document.</article> -->
 					<p style="text-align:center;">
-						<strong>การเลื่อนขั้นเงินเดือน <?=$dateround?>
+						<strong>แบบพิจารณาการเลื่อนขั้นเงินเดือน <?=$dateround?>
 							<br>
 							<?=$type["typename"]?> (<?=$classname?>)
 						<!-- <br>
@@ -217,7 +217,7 @@ $aes = new AES($_SESSION["encryp"]);
 												$rank = "นาย";
 												break;
 											case 2:
-												$rank = "นางสาว";
+												$rank = "น.ส.";
 												break;
 											case 3:
 												$rank = "นาง";

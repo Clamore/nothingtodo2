@@ -16,8 +16,8 @@ require("../inc/header.php");
 					<option value="0" selected>-----เลือกรายงาน-----</option>
 					<option value="1">แบบแจ้งผลการเลื่อนเงินเดือน</option>
 					<option value="2">แบบแจ้งผลการเลื่อนเงินเดือน - เอกสารลงนาม</option>
-					<option value="3">การเลื่อนขั้นเงินเดือน</option>
-					<option value="4">รายงานแสดงเงินของบุคลากร</option>
+					<option value="3">แบบพิจารณาการเลื่อนขั้นเงินเดือน</option>
+					<option value="4">รายงานข้อมูลเงินเดือน</option>
 				</select>
 			</div><!-- form-group -->
 			<div class="form-group">

@@ -111,7 +111,7 @@ $aes = new AES($_SESSION["encryp"]);
 							$rank = "นาย";
 							break;
 						case 2:
-							$rank = "นางสาว";
+							$rank = "น.ส.";
 							break;
 						case 3:
 							$rank = "นาง";
