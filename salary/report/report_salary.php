@@ -145,7 +145,8 @@ $aes = new AES($_SESSION["encryp"]);
 					}
 					else
 					{
-						$amount = $aes->decrypt(asciitotext($recorder["amount"]));
+						$amount = $recorder["amount"];
+						//$amount = $aes->decrypt(asciitotext($recorder["amount"]));
 					}
 				}
 				else

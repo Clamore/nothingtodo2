@@ -253,7 +253,8 @@ $aes = new AES($_SESSION["encryp"]);
 										}
 										else
 										{
-											$evaluate = $aes->decrypt(asciitotext($rec_eva["evaluate"]));
+											$evaluate = $rec_eva["evaluate"];
+											//$evaluate = $aes->decrypt(asciitotext($rec_eva["evaluate"]));
 										}
 									}
 									else
@@ -271,7 +272,8 @@ $aes = new AES($_SESSION["encryp"]);
 										}
 										else
 										{
-											$order = $aes->decrypt(asciitotext($rec_order["levelup"]));
+											$order = $rec_order["levelup"];
+											//$order = $aes->decrypt(asciitotext($rec_order["levelup"]));
 										}
 									}
 									else
@@ -299,7 +301,8 @@ $aes = new AES($_SESSION["encryp"]);
 												}
 												else
 												{
-													$evaluate1 = $aes->decrypt(asciitotext($eva1["evaluate"]));
+													$evaluate1 = $eva1["evaluate"];
+													//$evaluate1 = $aes->decrypt(asciitotext($eva1["evaluate"]));
 												}
 											}
 											else
@@ -318,7 +321,8 @@ $aes = new AES($_SESSION["encryp"]);
 												}
 												else
 												{
-													$evaluate2 = $aes->decrypt(asciitotext($eva2["evaluate"]));
+													$evaluate2 = $eva2["evaluate"];
+													//$evaluate2 = $aes->decrypt(asciitotext($eva2["evaluate"]));
 												}
 											}
 											else
@@ -343,7 +347,8 @@ $aes = new AES($_SESSION["encryp"]);
 												}
 												else
 												{
-													$evaluate = $aes->decrypt(asciitotext($eva["evaluate"]));
+													$evaluate = $eva["evaluate"];
+													//$evaluate = $aes->decrypt(asciitotext($eva["evaluate"]));
 												}
 											}
 											else
