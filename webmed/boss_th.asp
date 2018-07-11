@@ -11,8 +11,8 @@
 <hr />
 <table width="80%" border="0px" cellpadding="0" cellspacing="2" align="center">
 <tr height="30" style="font-size:16px">
-	<td bgcolor="#99FFFF" align="center" >	<span style="font-weight: bold">ลำดับ</span> </td>
-	<td  bgcolor="#99FFFF" align="center">	<span style="font-weight: bold">รูป</span> </td>
+	<td bgcolor="#99FFFF" align="center" width="10%">	<span style="font-weight: bold">ลำดับ</span> </td>
+	<td  bgcolor="#99FFFF" align="center" width="20%">	<span style="font-weight: bold">รูป</span> </td>
 	<td  bgcolor="#99FFFF" align="center">	<span style="font-weight: bold">รายนามหัวหน้าภาควิชา</span> </td>
 	<td  bgcolor="#99FFFF" align="center">	<span style="font-weight: bold">ระยะเวลาการดำรงตำแหน่ง</span> </td>	
 </tr>
@@ -102,7 +102,7 @@
 </tr>
 <tr>
 	<td align="center"><span style="font-size: 15px">15.</span></td>
-	<td align="center"><img src="images/head_division/015.jpg" width="118" height="133" border="0" alt=""></td>
+	<td align="center"><img src="images/head_division/015.jpg" width="95%" border="0" alt=""></td>
 	<td>	 <span style="font-size: 15px">รองศาสตราจารย์นายแพทย์<br> ไชยรัตน์  เพิ่มพิกุล</span></td>
 	<td>	<span style="font-size: 15px">16 ธันวาคม 2558 - ปัจจุบัน	</span></td>	
 </tr>
