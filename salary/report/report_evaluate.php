@@ -52,7 +52,7 @@ $aes = new AES($_SESSION["encryp"]);
 			<input type="hidden" name="employee" value="<?=$_SESSION["employee"]?>">
 			<input type="hidden" name="typeid" value="<?=$_SESSION["typeid"]?>">
 			<input type="hidden" name="class" value="<?=$_SESSION["class"]?>">
-			<input type="submit" value="excel">
+			<!-- <input type="submit" value="excel"> -->
 		</form>
 	  <!-- Each sheet element should have the class "sheet" -->
 	  <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
@@ -84,6 +84,21 @@ $aes = new AES($_SESSION["encryp"]);
 		if ($typeid <> "")
 		{
 			$con .= " AND w.typeid = '$typeid' ";
+		}
+		if ($class <> "")
+		{
+			if ($class == "1")
+			{
+				$qclass = " AND mpt.positiontypeid = '1' ";
+			}
+			else
+			{
+				$qclass = " AND mpt.positiontypeid <> '1' ";
+			}
+		}
+		else
+		{
+			$qclass = "";
 		}
 
 		if ($class == "1")
@@ -125,9 +140,10 @@ $aes = new AES($_SESSION["encryp"]);
 			LEFT JOIN $hrmed.tbemployee AS e ON o.empid=e.empid Collate Thai_CI_AI
 			LEFT JOIN $hrmed.tbempwork AS w ON e.id=w.id 
 			LEFT JOIN $hrmed.mtposition AS mp ON w.positionid=mp.positionid 
+			LEFT JOIN $hrmed.mtpositiontype AS mpt ON mp.positiontypeid=mpt.positiontypeid
 			LEFT JOIN $hrmed.mttype AS mt ON w.typeid=mt.typeid 
 			LEFT JOIN $hrmed.mtunit AS mu ON w.unitid=mu.unitid 
-			$unit AND empflag = '1'
+			$unit $qclass AND empflag = '1'
 		";
 		$sql .= $con;
 		//echo $sql;
