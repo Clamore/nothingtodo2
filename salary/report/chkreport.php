@@ -22,14 +22,17 @@ if ($report == "1")
 }
 elseif ($report == "2")
 {
-	echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=report_order_sign.php?chk=excel">';
+	//echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=report_order_sign.php?chk=excel">';
+	echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=report_order_sign.php">';
 }
 elseif ($report == "3")
 {
-	echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=report_evaluate.php?chk=excel">';
+	//echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=report_evaluate.php?chk=excel">';
+	echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=report_evaluate.php">';
 }
 elseif ($report == "4")
 {
-	echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=report_salary.php?chk=excel">';
+	//echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=report_salary.php?chk=excel">';
+	echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=report_salary.php">';
 }
 ?>

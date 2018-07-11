@@ -1,9 +1,9 @@
 <?php
 session_start();
-/*if($_GET["chk"]=="excel"){
+if($_GET["chk"]=="excel"){
 	header("Content-type: application/vnd.ms-excel");
 	header("Content-Disposition: attachment; filename=report_evaluate.xls");
-}*/
+}
 require("../database.mssql.class/msdatabase.class.php");
 require("../database.mssql.class/config.inc.php");
 require("../function/function.php");  
@@ -44,6 +44,15 @@ $aes = new AES($_SESSION["encryp"]);
 		 </style>
 	</head>
 	<body>
+		<form method="post" action="?chk=excel">
+			<input type="hidden" name="years" value="<?=$_SESSION["year"]?>">
+			<input type="hidden" name="note" value="<?=$_SESSION["note"]?>">
+			<input type="hidden" name="unitid" value="<?=$_SESSION["unit"]?>">
+			<input type="hidden" name="employee" value="<?=$_SESSION["employee"]?>">
+			<input type="hidden" name="typeid" value="<?=$_SESSION["typeid"]?>">
+			<input type="hidden" name="class" value="<?=$_SESSION["class"]?>">
+			<input type="submit" value="excel">
+		</form>
 		<?php
 		$years = $_SESSION["year"];
 		$note = $_SESSION["note"];
@@ -84,7 +93,7 @@ $aes = new AES($_SESSION["encryp"]);
 			FROM $hrmed.tbemployee AS e
 			INNER JOIN $hrmed.tbempwork AS w ON e.id=w.id
 			LEFT JOIN $hrmed.mtposition AS mp ON w.positionid=mp.positionid
-			$unit
+			$unit AND empflag = '1'
 		";
 		$sql .= $con;
 		$arr = $objdb->getArray($sql);

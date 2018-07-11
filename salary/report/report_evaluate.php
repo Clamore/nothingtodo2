@@ -1,9 +1,9 @@
 <?php
 session_start();
-/*if($_GET["chk"]=="excel"){
+if($_GET["chk"]=="excel"){
 	header("Content-type: application/vnd.ms-excel");
 	header("Content-Disposition: attachment; filename=report_evaluate.xls");
-}*/
+}
 require("../database.mssql.class/msdatabase.class.php");
 require("../database.mssql.class/config.inc.php");
 require("../function/function.php");  
@@ -45,7 +45,15 @@ $aes = new AES($_SESSION["encryp"]);
 	</head>
 
 	<body>
-
+		<form method="post" action="?chk=excel">
+			<input type="hidden" name="years" value="<?=$_SESSION["year"]?>">
+			<input type="hidden" name="note" value="<?=$_SESSION["note"]?>">
+			<input type="hidden" name="unitid" value="<?=$_SESSION["unit"]?>">
+			<input type="hidden" name="employee" value="<?=$_SESSION["employee"]?>">
+			<input type="hidden" name="typeid" value="<?=$_SESSION["typeid"]?>">
+			<input type="hidden" name="class" value="<?=$_SESSION["class"]?>">
+			<input type="submit" value="excel">
+		</form>
 	  <!-- Each sheet element should have the class "sheet" -->
 	  <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
 		<?php
@@ -119,7 +127,7 @@ $aes = new AES($_SESSION["encryp"]);
 			LEFT JOIN $hrmed.mtposition AS mp ON w.positionid=mp.positionid 
 			LEFT JOIN $hrmed.mttype AS mt ON w.typeid=mt.typeid 
 			LEFT JOIN $hrmed.mtunit AS mu ON w.unitid=mu.unitid 
-			$unit
+			$unit AND empflag = '1'
 		";
 		$sql .= $con;
 		//echo $sql;
@@ -184,14 +192,14 @@ $aes = new AES($_SESSION["encryp"]);
 									$dd145 = "วันที่ ".$d145." ".$arr_month[$m145]." ".($y145+543);*/
 									if ($type145["round"] == "1")
 									{
-										$dd145 = "1 ก.ค. ".date("Y")+543;
+										$dd145 = "1 ก.ค. ".(date("Y")+543);
 									}
 									else
 									{
-										$dd145 = "1 ม.ค. ".date("Y")+543;
+										$dd145 = "1 ม.ค. ".(date("Y")+543);
 									}
 								?>
-									<th>คะแนนประเมิน <?=$dd145?></th>
+									<th>คะแนนประเมิน <? echo $dd145?></th>
 								<?php
 								}
 								?>
@@ -318,16 +326,19 @@ $aes = new AES($_SESSION["encryp"]);
 												if ($eva2["evaluate"] == "" AND $eva2["evaluate"] == " ")
 												{
 													$evalute2 = 0;
+													$suggest = $eva2["suggest"];
 												}
 												else
 												{
 													$evaluate2 = $eva2["evaluate"];
 													//$evaluate2 = $aes->decrypt(asciitotext($eva2["evaluate"]));
+													$suggest = "";
 												}
 											}
 											else
 											{
 												$evaluate2 = 0;
+												$suggest = $eva2["suggest"];
 											}
 										?>
 											<td style="text-align:center;"><?=$evaluate1?></td>
@@ -344,16 +355,19 @@ $aes = new AES($_SESSION["encryp"]);
 												if ($eva["evaluate"] == "" AND $eva["evaluate"] == " ")
 												{
 													$evaluate = 0;
+													$suggest = $eva2["suggest"];
 												}
 												else
 												{
 													$evaluate = $eva["evaluate"];
+													$suggest = "";
 													//$evaluate = $aes->decrypt(asciitotext($eva["evaluate"]));
 												}
 											}
 											else
 											{
 												$evaluate = 0;
+												$suggest = $eva["suggest"];
 											}
 										?>
 											<td style="text-align:center;"><?=$evaluate?></td>
@@ -362,7 +376,7 @@ $aes = new AES($_SESSION["encryp"]);
 										?>
 										<td></td>
 										<td></td>
-										<td></td>
+										<td><?=$suggest;?></td>
 									</tr>
 							<?php
 									$i++;
