@@ -143,7 +143,7 @@ $aes = new AES($_SESSION["encryp"]);
 			LEFT JOIN $hrmed.mtpositiontype AS mpt ON mp.positiontypeid=mpt.positiontypeid
 			LEFT JOIN $hrmed.mttype AS mt ON w.typeid=mt.typeid 
 			LEFT JOIN $hrmed.mtunit AS mu ON w.unitid=mu.unitid 
-			$unit $qclass AND empflag = '1'
+			$unit $qclass AND empflag IN ('1','21')
 		";
 		$sql .= $con;
 		//echo $sql;
@@ -180,6 +180,7 @@ $aes = new AES($_SESSION["encryp"]);
 						<thead>
 							<tr>
 								<th>ลำดับที่</th>
+								<th>SAP ID</th>
 								<th>ชื่อ-สกุล</th>
 								<th>ตำแหน่ง</th>
 								<th>สาขาวิชา</th>
@@ -307,6 +308,7 @@ $aes = new AES($_SESSION["encryp"]);
 							?>
 									<tr>
 										<td style="text-align:center;"><?=$i?></td>
+										<td style="text-align:center;"><?=$rec["empid"]?></td>
 										<td><?=$rank.$rec["empname"]. " ".$rec["empsname"]?></td>
 										<td><?=$rec["positionname"]?></td>
 										<td><?=$rec["unitname"]?></td>
