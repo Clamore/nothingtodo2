@@ -78,12 +78,10 @@ else
 				}
 				?>
 				<table border="0" cellpadding="5" width="800" style="font-family: Cordia New, Cordia, serif;">
-					<thead>
-						<tr>
-							<th style="font-size:28px;">รายละเอียดอาจารย์ประจำหลักสูตร</th>
-						</tr>
-					</thead>
 					<tbody>
+						<tr>
+							<td style="font-size:28px;text-align:center;"><strong>รายละเอียดอาจารย์ประจำหลักสูตร</strong></td>
+						</tr>
 						<tr>
 							<td style="font-size:24px;">
 								<strong>ชื่อ</strong>&nbsp;<?=$rank.$emp["empname"]?>&nbsp;<?=$emp["empsname"]?>
@@ -139,8 +137,8 @@ else
 						</tr>
 						<tr>
 							<td style="font-size:24px;">
-								<br>
 								<strong>งานวิจัยที่สนใจหรือมีความชำนาญการ</strong>
+								<br><br>
 							</td>
 						</tr>
 						<tr>
@@ -221,6 +219,45 @@ else
 										$armonth = $book["book_month"];
 										$arryear = array("1"=>"Jan","2"=>"Feb","3"=>"Mar","4"=>"Apr","5"=>"May","6"=>"Jun","7"=>"Jul","8"=>"Aug","9"=>"Sep","10"=>"Oct","11"=>"Nov","12"=>"Dec");
 										echo "<p>-".$book["topic_detail"].". ".$book["name"].". ".$book["book_year"]." ".$arryear["$armonth"].";".$book["page_start"]."-".$book["page_end"]."</p>";
+									}
+								}
+								?>
+							</td>
+						</tr>
+						<tr>
+							<td style="font-size:24px;">
+								<strong>ผลงานทางวิชาการในลักษณะอื่น</strong>
+								<br>
+								<?php
+								$year = date("Y");
+								$year = $year -6;
+								$sql_acade = "SELECT * 
+									FROM task_action AS a
+									INNER JOIN task_main AS m ON a.id=m.id
+									INNER JOIN task_action_emp AS e ON a.task_ref=e.task_ref
+									WHERE task_id = '0401' AND e.task_emp = '$empid'
+									AND datetime_start > '$year' AND task_flag IS NULL
+									AND task_confirm = 'Y'
+								";
+								//echo $sql_acade;
+								$arr_acade = $objdb->getArray($sql_acade);
+								if ($arr_acade > 0)
+								{
+									foreach($arr_acade AS $acade)
+									{
+										if ($acade["topic_detail"] <> "" AND $acade["topic_detail"] <> " ")
+										{
+											$detail = $acade["topic_detail"];
+										}
+										elseif ($acade["task_detail"] <> "" AND $acade["task_detail"] <> " ")
+										{
+											$detail = $acade["task_detail"];
+										}
+										else
+										{
+											$detail = $acade["meet_name"];
+										}
+										echo "<p>-".$detail." ณ ".$acade["place"]."</p>";
 									}
 								}
 								?>
