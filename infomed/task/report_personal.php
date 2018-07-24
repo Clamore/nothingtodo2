@@ -128,7 +128,7 @@ $objdb = new MSDatabase($strHost,$strDB,$strUser,$strPassword);
 <!==============================================->
 <form class="form-horizontal" id="frm_task" method='post' action=''>
  <fieldset>
- <legend><h4>รายงานกองทุนเฉลิมพระเกียรติ </h4></legend>
+ <legend><h4>รายละเอียดอาจารย์ประจำหลักสูตร </h4></legend>
 		<input type="hidden" id="id" name="id"    />
 <!--		<input type="hidden" id="task_id" name="task_id" />
 		<input type="hidden" id="task_main" name="task_main" />
@@ -165,7 +165,7 @@ $objdb = new MSDatabase($strHost,$strDB,$strUser,$strPassword);
 					<label class="control-label" for="task_name">&nbsp;</label>
 					<div class="controls">		
 						<a href="" target="_blank"  name="submit" id="submit" class="btn btn-success" >&nbsp;&nbsp;แสดงรายงาน.. &nbsp;&nbsp;</a>
-						<a href="" target="_blank"  name="submit" id="btn_word" class="btn btn-info" >&nbsp;&nbsp;รายงาน.. &nbsp;&nbsp;[word]</a>
+						<a href="" target="_blank"  name="submit" id="btn_word" class="btn btn-info" >&nbsp;&nbsp;รายงาน.. &nbsp;&nbsp;[Excel]</a>
 					</div>
 				</div>
 			
