@@ -1,8 +1,10 @@
 <?
-/*if($_GET["doc"]=="doc"){
-header("Content-Type: application/msword");
-header('Content-Disposition: attachment; filename="report_t1.doc"');
-}*/
+if($_GET["doc"]=="doc"){
+	/*header("Content-Type: application/msword");
+	header('Content-Disposition: attachment; filename="report_personal.doc"');*/
+	header("Content-type: application/vnd.ms-excel");
+	header('Content-Disposition: attachment; filename="report_personal.xls"');
+}
 require("../database.mssql.class/msdatabase.class.php");
 require("../database.mssql.class/config.inc.php");
 require("../function/function.php");
@@ -29,8 +31,87 @@ else
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-874" />
 		<meta name=Generator content="Microsoft Word 12 (filtered)">
+		<style>
+		<!--
+			 /* Style Definitions */
+			 p.MsoNormal, li.MsoNormal, div.MsoNormal
+				{margin-top:0cm;
+				margin-right:0cm;
+				margin-bottom:10.0pt;
+				margin-left:0cm;
+				line-height:115%;
+				font-size:11.0pt;
+				font-family:"Calibri","sans-serif";}
+			p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+				{mso-style-link:"Balloon Text Char";
+				margin:0cm;
+				margin-bottom:.0001pt;
+				font-size:8.0pt;
+				font-family:"Tahoma","sans-serif";}
+			p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+				{margin:0cm;
+				margin-bottom:.0001pt;
+				font-size:11.0pt;
+				font-family:"Calibri","sans-serif";}
+			p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+				{margin-top:0cm;
+				margin-right:0cm;
+				margin-bottom:10.0pt;
+				margin-left:36.0pt;
+				line-height:115%;
+				font-size:11.0pt;
+				font-family:"Calibri","sans-serif";}
+			p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+				{margin-top:0cm;
+				margin-right:0cm;
+				margin-bottom:0cm;
+				margin-left:36.0pt;
+				margin-bottom:.0001pt;
+				line-height:115%;
+				font-size:11.0pt;
+				font-family:"Calibri","sans-serif";}
+			p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+				{margin-top:0cm;
+				margin-right:0cm;
+				margin-bottom:0cm;
+				margin-left:36.0pt;
+				margin-bottom:.0001pt;
+				line-height:115%;
+				font-size:11.0pt;
+				font-family:"Calibri","sans-serif";}
+			p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+				{margin-top:0cm;
+				margin-right:0cm;
+				margin-bottom:10.0pt;
+				margin-left:36.0pt;
+				line-height:115%;
+				font-size:11.0pt;
+				font-family:"Calibri","sans-serif";}
+			span.BalloonTextChar
+				{mso-style-name:"Balloon Text Char";
+				mso-style-link:"Balloon Text";
+				font-family:"Tahoma","sans-serif";}
+			span.jrnl
+				{mso-style-name:jrnl;}
+			.MsoPapDefault
+				{margin-bottom:10.0pt;
+				line-height:115%;}
+			@page Section1
+				{size:612.0pt 792.0pt;
+				margin:49.65pt 45.0pt 35.45pt 42.55pt;}
+			div.Section1
+				{page:Section1;}
+			 /* List Definitions */
+			 ol
+				{margin-bottom:0cm;}
+			ul
+				{margin-bottom:0cm;}
+		-->
+		</style>
 	</head>
 	<body>
+		<div class="Section1">
+		<p class=MsoNoSpacing><span style='font-size:7.0pt;font-family:"Browallia New","sans-serif"'>&nbsp;</span></p>
 		<?php
 		$sql_emp = "SELECT * FROM View_tbemployee AS e INNER JOIN View_tbempwork AS w ON e.empid=w.empid $con ";
 		//echo $sql_emp;
@@ -77,6 +158,9 @@ else
 					$rank = $emp["emprankname"];
 				}
 				?>
+				
+				
+
 				<table border="0" cellpadding="5" width="800" style="font-family: Cordia New, Cordia, serif;">
 					<tbody>
 						<tr>
@@ -270,5 +354,7 @@ else
 			}//End foreach
 		}//End Employee
 		?>
+		</p>
+		</div><!-- page section1 -->
 	</body>
 </html>
