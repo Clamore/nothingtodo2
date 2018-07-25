@@ -5934,7 +5934,13 @@ $c++;
   {
    echo " ปัจจุบัน )";
    $mm = $month;
-  }else{
+  }
+  elseif ($rec["dateend"] > $date_end_db)
+  {
+	  echo $rec["dateend"]. " ) ";
+	  $mm = $month;
+  }
+  else{
   echo $rec["dateend"]. " ) ";
   $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
   $mm = floor(($date_diff)/2628000);
@@ -8774,7 +8780,13 @@ $c++;
   {
    echo " ปัจจุบัน )";
    $mm = $month;
-  }else{
+  }
+  elseif ($rec["dateend"] > $date_end_db)
+  {
+	  echo $rec["dateend"]. " ) ";
+	  $mm = $month;
+  }
+  else{
   echo $rec["dateend"]. " ) ";
   $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
   $mm = floor(($date_diff)/2628000);
@@ -8877,7 +8889,13 @@ $c++;
   {
    echo " ปัจจุบัน )";
    $mm = $month;
-  }else{
+  }
+  elseif ($rec["dateend"] > $date_end_db)
+  {
+	  echo $rec["dateend"]. " ) ";
+	  $mm = $month;
+  }
+  else{
   echo $rec["dateend"]. " ) ";
   $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
   $mm = floor(($date_diff)/2628000);
@@ -9686,12 +9704,18 @@ $c++;
   {
    echo " ปัจจุบัน )";
    $mm = $month;
+  }
+  elseif ($rec["dateend"] > $date_end_db)
+  {
+	  echo $rec["dateend"]. " ) ";
+	  $mm = $month;
   }else{
   echo $rec["dateend"]. " ) ";
   $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
   $mm = floor(($date_diff)/2628000);
   $mm = $mm+1;
  }
+  //echo "MM ". $mm;
  ?>
   
   </span></p>  </td>
@@ -9909,7 +9933,13 @@ $c++;
   {
    echo " ปัจจุบัน )";
    $mm = $month;
-  }else{
+  }
+  elseif ($rec["dateend"] > $date_end_db)
+  {
+	  echo $rec["dateend"]. " ) ";
+	  $mm = $month;
+  }
+  else{
   echo $rec["dateend"]. " ) ";
   $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
   $mm = floor(($date_diff)/2628000);
@@ -11067,7 +11097,13 @@ $c++;
   {
    echo " ปัจจุบัน )";
    $mm = $month;
-  }else{
+  }
+  elseif ($rec["dateend"] > $date_end_db)
+  {
+	  echo $rec["dateend"]. " ) ";
+	  $mm = $month;
+  }
+  else{
   echo $rec["dateend"]. " ) ";
   $date_diff=strtotime($rec["dateend"])-strtotime($date_start_db);
   $mm = floor(($date_diff)/2628000);
