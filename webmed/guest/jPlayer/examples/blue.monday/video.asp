@@ -1,21 +1,39 @@
+<!--#include file="connect.asp" -->
 <%
-Dim chk,id,sql,rec
+Dim chk,id,sql,rec,sqlcount,recount,insertcount,execount
 id = Request.QueryString("id")
 chk = Request.QueryString("chk")
 
 If chk = "edu" Then 
-	sql = "SELECT * FROM education WHERE id = '" & id & "' "
+	sql = "SELECT * FROM education WHERE eduid = '" & id & "' "
 Else 
-	sql = "SELECT * FROM lecture WHERE id = '" & id & "' "
+	sql = "SELECT * FROM lecture WHERE lec_id = '" & id & "' "
 End If 
 Set rec = con.Execute(sql)
 If Not rec.EOF Then 
 	If chk = "edu" Then 
 		title = rec.fields("eduname").value
 		file = rec.fields("eduvdo").value
+
+		sqlcount = "SELECT MAX(num) AS num FROM medcon_watch "
+		Set recount = con.execute(sqlcount)
+		If Not recount.EOF Then 
+			num = recount.fields("num").value+1
+			insertcount = "INSERT INTO medcon_watch(eduid,of_id) VALUES('" & id & "','" & Session("user") & "')"
+			Set execount=con.execute(insertcount) 
+		End If 		
 	Else 
 		title = rec.fields("lec_name").value
 		file = rec.fields("lec_file").value
+
+		sqlcount = "SELECT MAX(num) AS num FROM lecture_watch "
+		Set recount = con.execute(sqlcount)
+		If Not recount.EOF Then 
+			num = recount.fields("num").value+1
+			insertcount = "INSERT INTO lecture_watch(lec_id,of_id) VALUES('" & id & "','" & Session("user") & "')"
+			'Response.write(insertcount)
+			Set execount=con.execute(insertcount) 
+		End If 		
 	End If 
 End If 
 %>
@@ -35,6 +53,7 @@ $(document).ready(function(){
 	
 	$("#jquery_jplayer_1").jPlayer({
 		ready: function () {
+			ready = true;
 			$(this).jPlayer("setMedia", {
 				title: "<%=Response.write(title)%>",
 				//flv: "medcon_30_08_60.flv",
@@ -46,6 +65,7 @@ $(document).ready(function(){
 				//poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
 				
 			});
+			$(this).jPlayer("play", 1); //Add auto play 7/8/2018
 		},
 		swfPath: "../../dist/jplayer",
 		supplied: "webmv, ogv, m4v,mp4",
@@ -110,6 +130,12 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+
+<br>
+
+<p>
+	หากมีปัญหาในการรับชมติดต่อได้ที่ หน่วยเวชสารสนเทศ ตึกอัษฎางค์ ชั้น 4 ห้อง 401 เบอร์โทรศัพท์ 02-419-7767-9 ต่อ 111
+</p>
 </body>
 
 </html>
