@@ -1,13 +1,12 @@
-<!--#include file="connect.asp" -->
 <%
 Dim chk,id,sql,rec
 id = Request.QueryString("id")
 chk = Request.QueryString("chk")
 
 If chk = "edu" Then 
-	sql = "SELECT * FROM education WHERE eduid = '" & id & "' "
+	sql = "SELECT * FROM education WHERE id = '" & id & "' "
 Else 
-	sql = "SELECT * FROM lecture WHERE lec_id = '" & id & "' "
+	sql = "SELECT * FROM lecture WHERE id = '" & id & "' "
 End If 
 Set rec = con.Execute(sql)
 If Not rec.EOF Then 
@@ -36,7 +35,6 @@ $(document).ready(function(){
 	
 	$("#jquery_jplayer_1").jPlayer({
 		ready: function () {
-			ready = true;
 			$(this).jPlayer("setMedia", {
 				title: "<%=Response.write(title)%>",
 				//flv: "medcon_30_08_60.flv",
@@ -48,7 +46,6 @@ $(document).ready(function(){
 				//poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
 				
 			});
-			$(this).jPlayer("play", 1); //Add auto play 7/8/2018
 		},
 		swfPath: "../../dist/jplayer",
 		supplied: "webmv, ogv, m4v,mp4",
