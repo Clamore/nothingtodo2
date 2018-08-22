@@ -73,13 +73,35 @@ require_once("config.php");
 <body data-accent="blue">
 
 <?php
-if (isset($_POST["submit"]))
+/*if (isset($_POST["submit"]))
 {
-	$id = curl($_POST["org_id"],$_POST["password"]);
+	$header = array('Type: application/json','token:app_token','secret:app_secret');
+	$data = array 
+		("function" => "authenticate", 
+		"org_id" => $_POST["org_id"],
+		"password" => $_POST["password"]);
+
+	$curl = curl_init();
+	$url = 'https://10.7.14.14/accio';
+
+	$options = array(CURLOPT_URL => $url,
+						    CURLOPT_HTTPHEADER =>$header,
+							CURLOPT_SSL_VERIFYPEER => false,
+							CURLOPT_SSL_VERIFYHOST => FALSE,
+							CURLOPT_POST => 1,
+							CURLOPT_POSTFIELDS => $data
+						   );
+
+	curl_setopt_array($curl, $options);
+
+	$result = curl_exec($curl);
+	//$result = json_decode($result,true);
+
+	curl_close($curl);
 
 	$result = explode(",",$id);
 	print_r($result);
-}
+}*/
 ?>
 
    <header id="hero"  style="height:110px">
@@ -89,7 +111,7 @@ if (isset($_POST["submit"]))
 					   </div><!--<div class="row-fluid">-->
 		   </div><!--<div class="container-fluid">-->
    </header>
-   q
+   
    <div class="container-fluid" >
       <div class="row-fluid" >
 	  
@@ -103,7 +125,8 @@ if (isset($_POST["submit"]))
 				 //$token = session_id();
 				 /*$path = 'accio';
 				 $action = 'action="'.$url.$path.'" ';*/
-				 $action = '';
+				 $action = 'action="login_cmd.php" ';
+				 //$action = '';
 				 ?>
 				   <form id="frm_login" <?=$action?> class="form-horizontal" method="post">
 									<div class="control-group">
